@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <style media="screen">
+        *{
+    font-family: 'Poppins', sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+}
+:root{
+    --primary: #56a13a;
+    --secondary: #030303;
+    --black: #030303;
+    --white:#fff;
+    --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+body{
+    background-color: #ffffff;
+}
+
+.result {
+    font-family: 'Poppins',sans-serif;
+    color: #030303;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+/*input[type=submit]{*/
+/*            background-color:#000000;*/
+/*            color: #ffffff;*/
+/*            cursor:pointer;*/
+/*            padding: 16px 32px;*/
+/*            margin-top: 70px;*/
+/*            margin-bottom: 200px;*/
+/*        }*/
+ .button-link {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: var(--primary);
+        color: white;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .button-link:hover {
+        background-color: black;
+    }
+
+    .header{
+    position: fixed;
+    top: 0; left: -89px; right: -96px;
+    z-index: 1000;
+    background: var(--black);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 9%;
+}
+
+.header .logo{
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: var(--white);
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.header .logo i{
+    padding-right: .5rem;
+}
+.header .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Change this line */
+    padding: 0rem; /* Add this line to add some spacing to the right */
+
+}
+
+
+.header .navbar a{
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-left: 2rem;
+    text-decoration: none;
+}
+
+.header .navbar a:hover{
+    color: var(--primary);
+}
+h1{
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+h2{
+    margin-top: 200px;
+}
+        </style>
+
+</head>
+<body style="text-align:center">
+<!--header starts from here-->
+        <header class="header">
+
+      <a class="logo"> <i class="fa-solid fa-seedling" style="color: #56a13a;"></i> Crop Recommendation System </a>
+
+      <nav class="navbar">
+
+         <a href="{% url 'predict' %}">Recommendation page</a>
+         <a href="{% url 'history' %}">View History</a>
+         <a href="{% url 'logout' %}">Log Out</a>
+      </nav>
+
+
+
+   </header>
+<div class="result">
+<h2> Our Recommended Crop is </h2>
+                               <h1>{{result}}</h1>
+        </div>
+
+          <a class="button-link" href="{% url 'home' %}">GO TO HOME</a>
+
+</body>
+</html>
