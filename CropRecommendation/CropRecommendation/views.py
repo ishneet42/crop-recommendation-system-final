@@ -61,6 +61,7 @@ def predict(request):
 def result(request):
     datapath = str(settings.BASE_DIR) + "/ML_Project/"
     output = None
+
     if request.method == "POST":
         predli = [float(request.POST['N']), float(request.POST['P']), float(request.POST['k']),
                   float(request.POST['temperature']), float(request.POST['humidity']),
@@ -76,23 +77,23 @@ def result(request):
         print("pH:", predli[5])
         print("Rainfall:", predli[6])
         print("notes:", notes)
-        print("result:", output)
-
-        try:
-            crop = Crop(
-                N=predli[0],
-                P=predli[1],
-                k=predli[2],
-                temperature=predli[3],
-                humidity=predli[4],
-                ph=predli[5],
-                rainfall=predli[6],
-                notes=notes,
-                prediction_result = output
-            )
-            crop.save()
-        except Exception as e:
-            print("An error occurred while saving:", e)
+        # print("result:", output)
+        #
+        # try:
+        #     crop = Crop(
+        #         N=predli[0],
+        #         P=predli[1],
+        #         k=predli[2],
+        #         temperature=predli[3],
+        #         humidity=predli[4],
+        #         ph=predli[5],
+        #         rainfall=predli[6],
+        #         notes=notes,
+        #         prediction_result = output
+        #     )
+        #     crop.save()
+        # except Exception as e:
+        #     print("An error occurred while saving:", e)
 
     crop = pd.read_csv(datapath + 'crop_recommendation_test.csv')
     with open(datapath + 'Crop_recommendation_RF.pkl', 'rb') as f:
@@ -113,7 +114,21 @@ def result(request):
         crop_name = label_name.loc[index_number, 'crop_name']
         output = crop_name.title()
 
-
+    try:
+        crop = Crop(
+            N=predli[0],
+            P=predli[1],
+            k=predli[2],
+            temperature=predli[3],
+            humidity=predli[4],
+            ph=predli[5],
+            rainfall=predli[6],
+            notes=notes,
+            prediction_result=output
+        )
+        crop.save()
+    except Exception as e:
+        print("An error occurred while saving:", e)
     return render(request, 'result.html', {"result": output})
 
 def history(request):
