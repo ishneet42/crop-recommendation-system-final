@@ -12,7 +12,7 @@ This is a web application built with Django that recommends suitable crops to fa
 
 - **User Authentication**: Allows farmers to create accounts and log in securely.
 - **Input Form**: Collects data about soil type, temperature, humidity, rainfall, etc.
-- **Prediction**: Uses a pre-trained Random Forest Classifier model to suggest suitable crops.
+- **Prediction**: Uses a Random Forest Classifier model to suggest suitable crops.
 - **Crop Details**: Provides information about recommended crops including expected yield, growth period, etc.
 - **Admin Panel**: Includes an admin interface to manage users, crops, and predictions.
 - **User History**: Includes storage and retreival of user history.
